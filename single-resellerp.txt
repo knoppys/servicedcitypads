@@ -1,0 +1,35 @@
+<?php get_header('header-resellerp'); ?>
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	<header>
+		
+		  <div class="container">
+		    
+		    <div class="row">
+		    	<div class="col-xs-6 logo">
+		    		<?php the_post_thumbnail('medium'); ?>
+		    	</div>
+		    	<div class="col-xs-6">
+		    		<a href="<?php echo get_post_meta($post->ID, 'resellerp_website'); ?>">View our full website</a>
+		    	</div>
+		    </div>
+		  
+		  </div><!-- /.container-fluid -->
+		
+	</header>
+	<div class="container content-area">
+		<div class="row">
+			<div class="col-sm-9" id="<?php get_the_ID(); ?>">
+				<main>
+					<artcile <?php post_class(); ?>>
+						<h1><?php the_title(); ?></h1>
+						<?php the_content(); ?>
+					</artcile>					
+				</main>
+			</div>			
+		</div>
+	</div>
+
+<?php endwhile; else : ?>
+	<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+<?php endif; ?>
+<?php get_footer('footer-resellerp'); ?>
