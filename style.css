@@ -4,7 +4,7 @@ Theme URI: http://www.design-et-al.co.uk
 Author: Design et al
 Author URI: http://www.design-et-al.co.uk
 Description: Custom bootstrap theme built for the Sericed City Pads website
-Version: 1.1
+Version: 1.2
 License: GNU General Public License
 License URI: license.txt
 Tags: custom, bootstrap
@@ -23,97 +23,3 @@ Date: 2015
 /* ==================== 
 == TYPO STYLES == 
 ==================== */
-.testimonials i {
-    cursor: pointer;
-    font-size: 26px;
-    padding: 20px 39px;
-}
-.loginform label {
-    display: block !important;
-    width: 100%;
-}
-.amendmentform {
-    display: none;
-}
-.amendmentform textarea::placeholder {
-    color: #000;
-}
-.success {
-    display: none;
-}
-input#user_login {
-    display: block;
-}
-
-input#user_pass {
-    display: block;
-}
-.resellerp .sidebar {
-    background: #003 none repeat scroll 0 0;
-    color: #fff;
-    padding: 20px;
-}
-.resellerp .sidebar i {
-    padding-right: 20px;
-}
-.resellerp .sidebar h4 {
-    border-bottom: 1px solid #fff;
-    padding-bottom: 16px;
-}
-li.user-login {
-    background: #aa0042 none repeat scroll 0 0;
-    margin: 10px 0;
-    padding: 10px 0;
-}
-header {
-  background-color: #003;
-  padding: 44px 0 !important;
-  z-index: 99999;
-}
-.post-container {
-    background: #e2e2e2 none repeat scroll 0 0;
-    margin: 20px 0;
-    padding: 10px;
-}
-.logged-in-home .panel-heading {
-    background: #003 none repeat scroll 0 0;
-    border-bottom: 1px solid #fff;
-    color: #fff;
-}
-.login img {
-    width: 300px;
-}
-.logged-in-home .container {
-    background: #efefef none repeat scroll 0 0;
-}
-
-
-.logged-in-home .btn-primary {
-    background: #ffa900 none repeat scroll 0 0;
-    color: #003;
-}
-
-.logged-in-home #home-search label {
-    color: inherit;
-}
-header.login {
-    padding: 10px 0 !important;
-}
-@media all and (max-width: 500px){
-
-.logged-in-home .panel-body td {
-    display: block;
-    width: 100%;
-}
-.logged-in-home .panel-body tr {
-    border-bottom: 1px dotted;
-}
-
-	.login img {
-	    width: 182px;
-	}
-  .logged-in-home .tab-content {
-    border: 1px solid #555;
-    padding: 3px;
-}
-}

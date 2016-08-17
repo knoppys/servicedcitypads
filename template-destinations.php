@@ -16,10 +16,8 @@ get_header(); ?>
 			</div>
 		</div>
 	<?php } ?>
-	<?php 
-		get_template_part('search-pulldown');
-
-	?>
+	<?php get_template_part('search-pulldown');	?>
+	
 
 	<div class="container content-area">
 		<div class="row">
@@ -33,14 +31,17 @@ get_header(); ?>
 								<h3>Cities</h3>
 								<ul class="destinations-nav">
 								<?php
-
-
 								$args = array( 'post_type' => 'locations', 'posts_per_page' => -1, 'order'=> 'ASC', 'orderby' => 'title', 'locationcategory' => 'cities' );
 
 								$myposts = get_posts( $args );
 								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
-									<li>
+									<li>	
+										<?php if(get_post_meta($post->ID,'cityguide', true)){
+											echo '<a class="cutyguidelink" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'"><i class="fa fa-map-marker"></i></a>';
+										}
+										?>									
 										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+										
 									</li>
 								<?php endforeach; 
 								wp_reset_postdata();?>
@@ -52,14 +53,17 @@ get_header(); ?>
 								<h3>City Areas</h3>
 								<ul class="destinations-nav">
 								<?php
-
-
 								$args = array( 'post_type' => 'locations', 'posts_per_page' => -1, 'order'=> 'ASC', 'orderby' => 'title', 'locationcategory' => 'city-areas' );
 
 								$myposts = get_posts( $args );
 								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
-									<li>
+								
+									<li>																	
 										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+										<?php if(get_post_meta($post->ID,'cityguide', true)){
+											echo '<a class="cutyguidelink wordlink" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'">City Gudie</a>';
+										}
+										?>	
 									</li>
 								<?php endforeach; 
 								wp_reset_postdata();?>

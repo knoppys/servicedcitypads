@@ -1,8 +1,0 @@
-[07-Jul-2016 21:03:28 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/servicedcitypads/public_html/wp-content/themes/servicedcitypads/functions.php on line 22
-[03-Aug-2016 01:45:44 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/servicedcitypads/public_html/wp-content/themes/servicedcitypads/functions.php on line 22
-[05-Aug-2016 23:49:47 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/servicedcitypads/public_html/wp-content/themes/servicedcitypads/functions.php on line 22
-[07-Aug-2016 14:47:41 UTC] PHP Fatal error:  Call to undefined function wp_title() in /home/servicedcitypads/public_html/wp-content/themes/servicedcitypads/header.php on line 8
-[07-Aug-2016 14:47:42 UTC] PHP Fatal error:  Call to undefined function have_rows() in /home/servicedcitypads/public_html/wp-content/themes/servicedcitypads/footer.php on line 7
-[10-Aug-2016 09:32:34 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/servicedcitypads/public_html/wp-content/themes/servicedcitypads/functions.php on line 22
-[10-Aug-2016 11:00:25 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/servicedcitypads/public_html/wp-content/themes/servicedcitypads/index.php on line 1
-[10-Aug-2016 17:50:33 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/servicedcitypads/public_html/wp-content/themes/servicedcitypads/functions.php on line 22
