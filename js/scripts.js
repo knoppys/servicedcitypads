@@ -10,6 +10,50 @@ jQuery(document)
     loading.hide();
   });
 
+jQuery(document).ready(function moveScroller() {
+    var $anchor = jQuery("#scroller-anchor");
+    var $scroller = jQuery('#cityguidenavstop');
+    var $content = jQuery('#guidecontent');
+
+    var move = function() {
+        var st = jQuery(window).scrollTop();
+        var ot = $anchor.offset().top - 100;
+        if(st > ot) {
+            $scroller.css({
+                position: "fixed",
+                top: "146px",
+                width: "100%",
+                left: "0",
+                right: "0",
+                
+            });
+            $content.css({
+            	margin: "150px 0px 0px 0px"
+            });
+        } else {
+            if(st <= ot) {
+                $scroller.css({
+                    position: "relative",
+                    top: ""
+                });
+                $content.css({
+            	margin: "0px 0px"
+            });
+            }
+        }
+    };
+    jQuery(window).scroll(move);
+    move();
+})
+
+jQuery(document).ready(function(){
+	jQuery('.cityguidenav a').click(function(){
+		jQuery('html, body').animate({
+		      scrollTop: jQuery(jQuery(this).attr('href')).offset().top - 200
+		  }), 500
+		  return false
+	})
+})
 
 
 //Navoigation toggle
