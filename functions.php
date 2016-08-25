@@ -5,7 +5,7 @@
 ****************************/
 function scp_front_styles() {        
 
-		wp_register_style( 'bootstrapcss', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+		wp_register_style( 'bootstrapcss', get_template_directory_uri() .'/css/bootstrap.min.css');
         wp_enqueue_style( 'bootstrapcss' );
         wp_register_style( 'datetimecss', get_template_directory_uri() .'/css/jquery.datetimepicker.css');
         wp_enqueue_style( 'datetimecss' );
@@ -23,7 +23,7 @@ add_action( 'wp_enqueue_scripts', 'scp_front_styles' );
 
 function scp_front_scripts() {    
     
-    wp_enqueue_script( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', array('jquery'), '', true );    
+    wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '', true );    
     wp_enqueue_script( 'slickjs', 'http://cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js', array('jquery'), '', true );
     wp_enqueue_script( 'googlemap', 'http://maps.google.com/maps/api/js?sensor=false', array('jquery'), '', true );
     wp_enqueue_script( 'datetimepicker', get_template_directory_uri() . '/js/jquery.datetimepicker.js', array('jquery'), '', true );    
@@ -32,7 +32,8 @@ function scp_front_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'scp_front_scripts' );
 
-
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' ); 
 /***************************
 * Galery post types
 ****************************/

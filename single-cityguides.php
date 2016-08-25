@@ -26,7 +26,7 @@
 		<div class="row">
 			<div id="<?php get_the_ID(); ?>">		
 
-				<table width="100%" cellspacing="0" cellpadding="0" border-collapse="collapse" class="cityguidenav">
+				<table width="100%" cellspacing="0" cellpadding="0" border-collapse="collapse" class="cityguidenav" style="margin-top:20px;">
 					<tbody>
 						<td>
 							<a class="navlink" href="#wte">

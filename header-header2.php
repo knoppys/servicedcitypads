@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<title><?php wp_title(); ?></title>
+<!-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <?php wp_head(); ?>
