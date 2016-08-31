@@ -22,7 +22,6 @@ function scp_front_styles() {
 add_action( 'wp_enqueue_scripts', 'scp_front_styles' );
 
 function scp_front_scripts() {    
-    
     wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '', true );    
     wp_enqueue_script( 'slickjs', 'http://cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js', array('jquery'), '', true );
     wp_enqueue_script( 'googlemap', 'http://maps.google.com/maps/api/js?sensor=false', array('jquery'), '', true );

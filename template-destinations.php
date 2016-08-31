@@ -37,7 +37,7 @@ get_header(); ?>
 								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
 									<li>	
 										<?php if(get_post_meta($post->ID,'cityguide', true)){
-											echo '<a class="cutyguidelink" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'"><i class="fa fa-map-marker"></i></a>';
+											echo '<a class="cutyguidelink" title="City Guide" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'"><i class="fa fa-map-marker"></i></a>';
 										}
 										?>									
 										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -58,12 +58,12 @@ get_header(); ?>
 								$myposts = get_posts( $args );
 								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
 								
-									<li>																	
-										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+									<li>															
 										<?php if(get_post_meta($post->ID,'cityguide', true)){
-											echo '<a class="cutyguidelink wordlink" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'">City Gudie</a>';
+											echo '<a class="cutyguidelink" title="City Guide" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'"><i class="fa fa-map-marker"></i></a>';
 										}
 										?>	
+										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 									</li>
 								<?php endforeach; 
 								wp_reset_postdata();?>
