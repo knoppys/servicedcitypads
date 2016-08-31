@@ -1,3 +1,44 @@
+/********************
+// jQuery loader
+********************/
+var loading = jQuery('#loadingDiv').hide();
+jQuery(document)
+  .ajaxStart(function () {
+    loading.show();
+  })
+  .ajaxStop(function () {
+    loading.hide();
+  });
+
+
+//City Guides Navigation 
+jQuery(document).ready(function(){
+	function sticky_relocate() {  
+	    var window_top = jQuery(window).scrollTop();  
+	    var div_top = jQuery('#scroller-anchor').offset().top - 200;  
+	    if (window_top > div_top) {  
+	        jQuery('#cityguidenavstop').addClass('stick');         
+	    } else {  
+	        jQuery('#cityguidenavstop').removeClass('stick');
+	    }  
+	}  
+	jQuery(function () {  
+	    jQuery(window).scroll(sticky_relocate);  
+	    sticky_relocate();  
+	});
+})
+
+
+//city guides smooth scroll
+jQuery(document).ready(function() {
+    jQuery(".cityguidenav a").click(function() {
+        jQuery("html, body").animate({
+        	scrollTop: jQuery(jQuery(this).attr("href")).offset().top - 200
+        }), !1
+    })
+}),
+
+
 
 //Navoigation toggle
 	jQuery( "#menu-toggle" ).click(function() {
@@ -16,7 +57,17 @@
 	jQuery(function() { 
 	      jQuery('.hotelalt').hide().delay(500).fadeIn(2200);
 	});
-
+//Run the featured news slider
+	jQuery('.featured-news-container').slick({
+		infinite: true,
+	 	dots: false,
+	 	arrows: false,
+	 	autoPlay: true,
+	 	pauseOnHover: false,
+	 	autoplay: true,
+	 	fade: true,
+  		cssEase: 'linear'
+	});
 //Run the featured offers slider
 	jQuery('#home-slides').slick({
 		infinite: true,
@@ -33,10 +84,11 @@
 	jQuery('.apartment-single-slides').slick({
 		infinite: true,
 	 	dots: false,
-	 	arrows: false,
 	 	autoPlay: true,
 	 	pauseOnHover: false,
 	 	autoplay: true,
+	 	prevArrow: '#slider-left',
+	 	nextArrow: '#slider-right'
 	});
 	jQuery('.slider-nav').slick({
 	  slidesToShow: 3,
@@ -53,12 +105,26 @@ jQuery(document).ready(function(){
 	jQuery('#testimonials-slider').slick({
 		infinite: true,
 	 	dots: false,
-	 	arrows: false,
 	 	autoPlay: true,
-	 	pauseOnHover: false,
+	 	pauseOnHover: true,
 	 	autoplay: true,
-	});
+	 	speed: 2000,
+	 	prevArrow: '#test-l',
+	 	nextArrow: '#test-r',
+	 	slidesToShow: 4,
+	  	slidesToScroll: 1,
+	});	
 });
+//Booking deposit date
+	jQuery('#contact-arrival input').datetimepicker({
+		timepicker: false,
+		format:'d.m.Y'
+	});
+	//Booking deposit date
+	jQuery('#contact-departure input').datetimepicker({
+		timepicker: false,
+		format:'d.m.Y'
+	});
 
 /*
 /Run the latest offers vertical slider
@@ -124,88 +190,139 @@ jQuery(document).ready(function(){
 	});
 });
 
+
+
+
+//Check in time search box
 jQuery(document).ready(function(){
-
-	var directionsDisplay;
-		var directionsService = new google.maps.DirectionsService();
-
-		function initialize() {
-		  directionsDisplay = new google.maps.DirectionsRenderer();
-		  var lat = document.getElementById('lat').value;
-		  var longi = document.getElementById('long').value;
-		  var mapOptions = {
-		    zoom: 10,
-		    center: new google.maps.LatLng(lat, longi)
-
-		  };
-		  var map = new google.maps.Map(document.getElementById('gmap_canvas'),
-		      mapOptions);
-		  
-
-		  var marker = new google.maps.Marker({
-		      position: new google.maps.LatLng(lat, longi),
-		      map: map,
-		      title: 'Uluru (Ayers Rock)'
-		  });
-  
-		  google.maps.event.addListener(marker, 'click', function() {
-		    infowindow.open(map,marker);
-		  });
-		  directionsDisplay.setMap(map);
-		  directionsDisplay.setPanel(document.getElementById('directions-panel'));
-
-		  var control = document.getElementById('control');
-		  control.style.display = 'block';
-		  map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
-		}
-
-		function calcRoute() {
-		  var start = document.getElementById('latlong').value;
-		  var end = document.getElementById('end').value;
-		  var request = {
-		    origin: start,
-		    destination: end,
-		    travelMode: google.maps.TravelMode.DRIVING
-		  };
-		  directionsService.route(request, function(response, status) {
-		    if (status == google.maps.DirectionsStatus.OK) {
-		      directionsDisplay.setDirections(response);
-		    }
-		  });
-		}
-
-		google.maps.event.addDomListener(window, 'load', initialize);
+	jQuery('#arrivaldate').datetimepicker({																								
+		timepicker: false,
+		format:'d.m.Y'
 	});
-	
+	jQuery('#leavingdate').datetimepicker({																								
+		timepicker: false,
+		format:'d.m.Y'
+	});
+});
 
-
-
-
-	/********************
+/********************
 // Ajax function for the default location serch query
 ********************/	
 
 jQuery(document).ready(function(){
 
-jQuery('#search-submit').click(function() { 	
-	
-	var location = jQuery('#location').val();
-	jQuery(function(){
-	    jQuery.ajax({
-            url:"http://www.greenmonkeypublicrelations.com/scpads/wp-admin/admin-ajax.php",
-            type:'POST',
-            data:'action=getsearchresults&location=' + location,
-            success:function(result){
-            //got it back, now assign it to its fields. 	            	
-           	jQuery('.content-area').hide().html( result ).fadeIn('slow');
-           	jQuery('.archive-search').hide();
-           	//console.log(result);
+		//add the include class to each element6 as it is clicked.
+		jQuery('#location').focus(function(){
+			jQuery('#location').addClass('include');
+		});
+		jQuery('#noofpeople').focus(function(){
+			jQuery('#noofpeople').addClass('include');
+		});
+		jQuery('#noofrooms').focus(function(){
+			jQuery('#noofrooms').addClass('include');
+		});
 
-            	
-            }
-		});		
-	});
+		jQuery('#search-submit').click(function() { 
+		    if (jQuery('#location.include, #noofpeople.include, #noofrooms.include').length == 3){
+		        var location = jQuery('#location').val();
+				var noofpeople = jQuery('#noofpeople').val();
+				var noofrooms = jQuery('#noofrooms').val();
+				jQuery(function(){
+				    jQuery.ajax({
+			            url:"http://knoppysdev.com/servicedcitypads/wp-admin/admin-ajax.php",
+			            type:'POST',
+			            data:'action=getsearchresults&location=' + location + 
+			            '&noofpeople=' + noofpeople + '&apartmenttype=' + noofrooms,
+			            success:function(result){
+			            //got it back, now assign it to its fields. 	            	
+			           	jQuery('.content-area').hide().html( result ).fadeIn('slow');
+			           	jQuery('.archive-search').hide();
+			           	//console.log(result);
+
+			            	
+			            }
+					});		
+				});
+		    } else {
+		        jQuery('#validate').show();
+		    }
+		});
+
+
 });
-})
 
 
+/********************
+// Ajax main booking request form
+********************/	
+
+jQuery('#contacthidden').click(function(){
+	jQuery('#contacthidden').val('fail');
+});
+
+jQuery('#maincontact').click(function() { 
+	var name = jQuery('#contactname').val();
+	var email = jQuery('#contactemail').val(); 
+	var number = jQuery('#contactnumber').val(); 
+	var destination = jQuery('#contactdestination').val();
+	var arrival =  jQuery('#contactarrival').val()
+	var leaving = jQuery('#contactleaving').val();
+    var noofguests = jQuery('#contactnoofguests').val();
+    var noofnights = jQuery('#contactnoofnights').val();
+
+    if (name,email,number,destination,arrival,leaving,noofguests){
+
+    	jQuery(function(){
+		    jQuery.ajax({
+	            url:"http://knoppysdev.com/servicedcitypads/wp-admin/admin-ajax.php",
+	            type:'POST',
+	            data:'action=send_my_awesome_form&name=' + name + 
+	            '&email=' + email +
+	            '&number=' + number + 
+	            '&destination=' + destination +
+	            '&arrival=' + arrival +
+	            '&leaving=' + leaving + 
+	            '&noofguests=' + noofguests + 
+	            '&noofnights=' + noofnights,
+	         
+	            success:function(result){	            	
+	            	     jQuery('.success').show(); 
+	            	     jQuery('.maincontactform').hide();         	
+	                  }
+			});
+		});
+
+    } else if (!name,!email,!number,!destination,!arrival,!leaving,!noofguests){
+    	jQuery('.error').show();
+    }
+
+	
+});
+
+
+/********************
+// Ajax amendment form
+********************/	
+
+jQuery(document).ready(function(){
+	jQuery('.amendmentclick').click(function(){
+		jQuery(this).closest('.collapse').find('.amendmentform').toggle();
+	});
+
+	jQuery('#amendmentsubmit').click(function() { 
+		var data = jQuery(this).closest('.amendmentform').serialize();		
+
+	    	jQuery(function(){
+			    jQuery.ajax({
+		            url:"http://knoppysdev.com/servicedcitypads/wp-admin/admin-ajax.php",
+		            type:'POST',
+		            data:'action=amendment_form&' + data,	         
+		            success:function(result){	
+						jQuery('.amendmentform').hide(); 					
+							        	             	
+		              }
+				});
+			});
+
+	    });
+});
