@@ -71,6 +71,7 @@ get_header(); ?>
 								</ul>
 							</div>
 						</div>
+						
 					</artcile>					
 				</main>
 			</div>
