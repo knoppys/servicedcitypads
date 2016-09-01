@@ -27,6 +27,7 @@ function scp_front_scripts() {
     wp_enqueue_script( 'googlemap', 'http://maps.google.com/maps/api/js?sensor=false', array('jquery'), '', true );
     wp_enqueue_script( 'datetimepicker', get_template_directory_uri() . '/js/jquery.datetimepicker.js', array('jquery'), '', true );    
     wp_enqueue_script( 'scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '', true );
+    wp_localize_script( 'scripts', 'siteUrlobject', array('siteUrl' => get_bloginfo('url')));
 }
 
 add_action( 'wp_enqueue_scripts', 'scp_front_scripts' );

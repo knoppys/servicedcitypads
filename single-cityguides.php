@@ -43,6 +43,21 @@
 								<img src="<?php echo get_post_meta($post->ID, 'wtgoimg', true); ?>">
 							</a>
 						</td>
+						<td>
+							<a class="navlink" href="#wtshop">
+								<img src="<?php echo get_post_meta($post->ID, 'wtshimg', true); ?>">
+							</a>
+						</td>
+						<td>
+							<a class="navlink" href="#wtvisit">
+								<img src="<?php echo get_post_meta($post->ID, 'wtvimg', true); ?>">
+							</a>
+						</td>
+						<td>
+							<a class="navlink" href="#usefulweb">
+								<img src="<?php echo get_post_meta($post->ID, 'usefulwebimg', true); ?>">
+							</a>
+						</td>
 					</tbody>
 				</table>
 				<div id="scroller-anchor"></div> 
@@ -61,6 +76,21 @@
 						<td>
 							<a class="navlink" href="#wtgo">
 								<span class="navtext">Where to go out...</span>
+							</a>
+						</td>
+						<td>
+							<a class="navlink" href="#wtshop">
+								<span class="navtext">Where to shop...</span>
+							</a>
+						</td>
+						<td>
+							<a class="navlink" href="#wtvisit">
+								<span class="navtext">Where to visit...</span>
+							</a>
+						</td>
+						<td>
+							<a class="navlink" href="#usefulweb">
+								<span class="navtext">Useful Apps & Webistes...</span>
 							</a>
 						</td>
 					</tbody>
@@ -86,6 +116,24 @@
 				<div class="col-md-12" id="wtgo">
 					<h2>Where to go out...</h2>
 					<?php echo get_post_meta($post->ID, 'wheretogoout', true); ?>
+				</div>
+			</div>
+			<div class="row">	
+				<div class="col-md-12" id="wtshop">
+					<h2>Where to shop...</h2>
+					<?php echo get_post_meta($post->ID, 'wheretoshop', true); ?>
+				</div>
+			</div>
+			<div class="row">	
+				<div class="col-md-12" id="wtvisit">
+					<h2>Where to visit...</h2>
+					<?php echo get_post_meta($post->ID, 'wheretovisit', true); ?>
+				</div>
+			</div>
+			<div class="row">	
+				<div class="col-md-12" id="usefulweb">
+					<h2>Useful Apps &nbsp; Webistes...</h2>
+					<?php echo get_post_meta($post->ID, 'usefulweb', true); ?>
 				</div>
 			</div>
 		</div>							
