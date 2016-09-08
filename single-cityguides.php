@@ -28,34 +28,28 @@
 
 				<table width="100%" cellspacing="0" cellpadding="0" border-collapse="collapse" class="cityguidenav" style="margin-top:20px;">
 					<tbody>
-						<td>
-							<a class="navlink" href="#wte">
-								<img src="<?php echo get_post_meta($post->ID, 'wteimg', true); ?>">
-							</a>
-						</td>						
-						<td>
-							<a class="navlink" href="#wtd">
-								<img src="<?php echo get_post_meta($post->ID, 'wtdimg', true); ?>">
+						<td style="padding:62px 40px; background: url(<?php echo get_post_meta($post->ID, 'wteimg', true); ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+     						 <a class="navlink" href="#wte" style="padding:10px;">
+      						</a>
+  						</td>							
+						<td style="padding:62px 40px; background: url(<?php echo get_post_meta($post->ID, 'wtdimg', true); ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+							<a class="navlink" href="#wtd" style="padding:10px;">
 							</a>
 						</td>
-						<td>
-							<a class="navlink" href="#wtgo">
-								<img src="<?php echo get_post_meta($post->ID, 'wtgoimg', true); ?>">
+						<td style="padding:62px 40px; background: url(<?php echo get_post_meta($post->ID, 'wtgoimg', true); ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+							<a class="navlink" href="#wtgo" style="padding:10px;">
 							</a>
 						</td>
-						<td>
-							<a class="navlink" href="#wtshop">
-								<img src="<?php echo get_post_meta($post->ID, 'wtshimg', true); ?>">
+						<td style="padding:62px 40px; background: url(<?php echo get_post_meta($post->ID, 'wtshimg', true); ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+							<a class="navlink" href="#wtshop" style="padding:10px;">
 							</a>
 						</td>
-						<td>
-							<a class="navlink" href="#wtvisit">
-								<img src="<?php echo get_post_meta($post->ID, 'wtvimg', true); ?>">
+						<td style="padding:62px 40px; background: url(<?php echo get_post_meta($post->ID, 'wtdimg', true); ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+							<a class="navlink" href="#wtvisit" style="padding:10px;">
 							</a>
 						</td>
-						<td>
-							<a class="navlink" href="#usefulweb">
-								<img src="<?php echo get_post_meta($post->ID, 'usefulwebimg', true); ?>">
+						<td style="padding:62px 40px; background: url(<?php echo get_post_meta($post->ID, 'usefulwebimg', true); ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+							<a class="navlink" href="#usefulweb" style="padding:10px;">
 							</a>
 						</td>
 					</tbody>
@@ -90,7 +84,7 @@
 						</td>
 						<td>
 							<a class="navlink" href="#usefulweb">
-								<span class="navtext">Useful Apps & Webistes...</span>
+								<span class="navtext">Useful Apps &amp; Webistes...</span>
 							</a>
 						</td>
 					</tbody>
@@ -132,7 +126,7 @@
 			</div>
 			<div class="row">	
 				<div class="col-md-12" id="usefulweb">
-					<h2>Useful Apps &nbsp; Webistes...</h2>
+					<h2>Useful Apps &amp; Webistes...</h2>
 					<?php echo get_post_meta($post->ID, 'usefulweb', true); ?>
 				</div>
 			</div>

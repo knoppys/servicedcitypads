@@ -16,6 +16,10 @@ ul.blog-articles {
     display: block!important;
     width: 100%
 }
+.images {
+    padding: 30%;
+    border: 1px solid #fff;
+}
 .amendmentform {
     display: none
 }
@@ -32,6 +36,12 @@ input#user_pass {
     background: #003;
     color: #fff;
     padding: 20px
+}
+.images {
+    padding:5%;
+}
+.images-nav{
+    padding:30px;
 }
 .resellerp .sidebar i {
     padding-right: 20px

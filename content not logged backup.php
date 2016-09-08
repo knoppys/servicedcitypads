@@ -110,14 +110,15 @@
 
 									<li class="col-md-6">
 										<div class="blog-item">
-											<div class="row">
-												<?php 
-													$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
-													$url = $thumb['0']; 													
-												?>									
-												<div class="col-sm-5" style="padding: 20px; padding-bottom: 0px;">
-													<div class="featuredimage" style="padding:70px; background: url(<?php echo $url; ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;" >
-													</div>
+											<div class="row">									
+												<div class="col-sm-5">
+												<?php
+												if (has_post_thumbnail()) {
+													the_post_thumbnail('medium');
+												} else {
+													echo '<img src="' . get_template_directory_uri() . '/images/camera-icon-md.png"/>';
+												}												
+												?>																			
 												</div>
 												<div class="col-sm-7">
 													<p><strong><?php the_title(); ?></strong></p>
