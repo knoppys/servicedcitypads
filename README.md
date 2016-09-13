@@ -1,5 +1,8 @@
 Changelog
 
+V1.3.6 -- Added the Company Code field to the booking request. 
+		  Added the code to the form js and php.
+
 V1.3.6 -- Added gloabal image rules to show all slider images and 
 		  additional content images (not those inside editors) to 
 		  insert as background images. This is to keep all the images 

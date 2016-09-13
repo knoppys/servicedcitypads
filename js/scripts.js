@@ -269,6 +269,7 @@ jQuery('#maincontact').click(function() {
 	var leaving = jQuery('#contactleaving').val();
     var noofguests = jQuery('#contactnoofguests').val();
     var noofnights = jQuery('#contactnoofnights').val();
+    var companycode = jQuery('#companycode').val();
 
     if (name,email,number,destination,arrival,leaving,noofguests){
 
@@ -283,7 +284,8 @@ jQuery('#maincontact').click(function() {
 	            '&arrival=' + arrival +
 	            '&leaving=' + leaving + 
 	            '&noofguests=' + noofguests + 
-	            '&noofnights=' + noofnights,
+	            '&noofnights=' + noofnights + 
+	            '&companycode=' + companycode,
 	         
 	            success:function(result){	            	
 	            	     jQuery('.success').show(); 

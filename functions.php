@@ -66,6 +66,7 @@ function init_send_my_awesome_form(){
         $message .= "<br>No of guests :" . $_POST['noofguests'] ."\n";
         $message .= "<br>Arrival Date :" . $_POST['arrival'] ."\n";
         $message .= "<br>Leaving Date :" . $_POST['leaving'] ."\n";
+        $message .= "<br>Company Code :" . $_POST['companycode'] ."\n";
 
 
         //set the form headers
@@ -74,7 +75,6 @@ function init_send_my_awesome_form(){
         $headers .= "X-MSMail-Priority: Normal\n";
         $headers .= "X-Mailer: php\n";
         $headers .= "From: Serviced City Pads <info@servicedcitypads.com>\n";
-        $headers .= "Cc: richard.stockton@design-et-al.co.uk\n";
 
         // The email subject
         $subject = 'Booking Request';

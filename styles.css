@@ -645,12 +645,12 @@ footer .btn {
     border: 1px solid #fff;
     width: 100%
 }
-#searchsubmit,
-.btn-primary {
+#searchsubmit, .btn-primary {
     background-color: #003;
     color: #fff;
     text-transform: uppercase;
-    border-color: #003
+    border-color: #003;
+    width: 100%;
 }
 .widget.widget_search input {
     display: block;
