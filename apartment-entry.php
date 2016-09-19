@@ -109,9 +109,13 @@
 			$images = get_attached_media('image', $post->ID);
 			if(!empty($images)){
 				foreach($images as $image) { ?>
-					<div style="background: url(<?php echo wp_get_attachment_image_src($image->ID,'full')[0]; ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-						<div style="padding:30%;"></div>
+					
+					<?php $imagesrc = wp_get_attachment_image_src($image->ID,'full')[0]; ?>
+					
+					<div style="background: url('<?php echo $imagesrc; ?>'); background-repeat: no-repeat;background-position: center center;background-attachment: scroll;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+						<div style="padding:30%;"></div>					
 					</div>
+
 			<?php } ?>
 			<div class="slider-navigation">
 				<div class="row">
@@ -134,7 +138,11 @@
 			$images = get_attached_media('image', $post->ID);
 			if(!empty($images)){
 				foreach($images as $image) { ?>
-			  	<div style="background: url(<?php echo wp_get_attachment_image_src($image->ID,'full')[0]; ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+
+				<?php $imagesrc = wp_get_attachment_image_src($image->ID,'full')[0]; ?>
+
+				
+			  	<div style="background: url('<?php echo $imagesrc; ?>'); background-repeat: no-repeat;background-position: center center;background-attachment: scroll;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
 					<div style="padding:30%;border:1px solid #fff;"></div>
 				</div>
 			<?php } } ?>

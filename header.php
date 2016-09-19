@@ -50,9 +50,27 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 </header>
-<?php
-	if(is_front_Page()){
-		get_template_part('slider');
+
+<section class="warning">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<i class="fa fa-warning"></i>
+			</div>
+			<div class="col-sm-7">
+				<h2 style="font-size: 3em;">System Outage</h2>
+                <p style="font-size: 25px;">Due to unforeseen circumstances, our internal communications are temporarily unavailable.  </p>
+                <p>Please contact our Reservations Team on:</p>
+                <p class="warning-tel" style="font-size: 49px;">07470 477 208</p>
+                <p>We appreciate your patience and apologise for any inconvenience caused. </p>
+			</div>
+		</div>
+	</div>
+</section>
+<?php 
+if(is_front_Page()){
+		//get_template_part('slider');
+		get_template_part('search-pulldown');
 	}
 ?>
 

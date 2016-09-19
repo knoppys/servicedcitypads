@@ -23,6 +23,7 @@ ul.blog-articles {
 .amendmentform {
     display: none
 }
+
 .logo img,
 .nav>li>a,
 input#user_login,
@@ -45,6 +46,15 @@ input#user_pass {
 }
 .resellerp .sidebar i {
     padding-right: 20px
+}
+section.warning {
+    background: #aa0042;
+    color: #fff;
+    padding: 4% 0;
+}
+section.warning i {
+    font-size: 12em;
+    padding: 19%;
 }
 .resellerp .sidebar h4 {
     border-bottom: 1px solid #fff;
@@ -645,12 +655,12 @@ footer .btn {
     border: 1px solid #fff;
     width: 100%
 }
-#searchsubmit, .btn-primary {
+#searchsubmit,
+.btn-primary {
     background-color: #003;
     color: #fff;
     text-transform: uppercase;
-    border-color: #003;
-    width: 100%;
+    border-color: #003
 }
 .widget.widget_search input {
     display: block;
@@ -1251,6 +1261,17 @@ span.navtext {
     width: 7%;
 }
 @media all and (max-width: 500px) {
+    section.warning i {
+    font-size: 3em;
+    padding: 0%;
+}
+.warning h2 {
+    font-size: 2.5em !important;
+}
+p.warning-tel {
+    font-size: 2.5em !important;
+    padding: 5px 0;
+}
     .banner,
     .cityguidenav,
     .facilities i,
