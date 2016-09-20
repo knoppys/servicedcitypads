@@ -1,5 +1,7 @@
 Changelog
 
+V1.3.8 -- Removed the warning. 
+
 V1.3.7 -- Added a warning to all pages about the power outage
 
 V1.3.6 -- Added the Company Code field to the booking request. 
