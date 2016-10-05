@@ -10,7 +10,7 @@
 
 	<!-- Text input-->
 	<label for="location">Find your perfect apartment...</label>
-	<p style="color:#fff;" id="validate">Please fill in the all the form fields</p>
+	<p style="color: rgb(137, 5, 5) !important;" id="validate">Please fill in the all the form fields</p>
 
 	<div class="row">
 		

@@ -44,7 +44,7 @@
 							<a class="navlink" href="#wtshop" style="padding:10px;">
 							</a>
 						</td>
-						<td style="padding:62px 40px; background: url(<?php echo get_post_meta($post->ID, 'wtdimg', true); ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+						<td style="padding:62px 40px; background: url(<?php echo get_post_meta($post->ID, 'wtvimg', true); ?>) no-repeat center center scroll; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
 							<a class="navlink" href="#wtvisit" style="padding:10px;">
 							</a>
 						</td>

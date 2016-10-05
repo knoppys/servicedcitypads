@@ -1,4 +1,5 @@
 Changelog
+V1.3.9 -- Bug fix for City Guides, incorrect meta showing.
 
 V1.3.8 -- Removed the warning. 
 
