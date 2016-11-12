@@ -66,7 +66,7 @@ function init_send_my_awesome_form(){
         $message .= "<br>No of guests :" . $_POST['noofguests'] ."\n";
         $message .= "<br>Arrival Date :" . $_POST['arrival'] ."\n";
         $message .= "<br>Leaving Date :" . $_POST['leaving'] ."\n";
-        $message .= "<br>Company Code :" . $_POST['companycode'] ."\n";
+        //$message .= "<br>Company Code :" . $_POST['companycode'] ."\n";
 
 
         //set the form headers

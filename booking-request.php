@@ -39,12 +39,7 @@
         </div>
       </div>
 
-      <!-- Text input-->
-      <div class="control-group">               
-        <div class="controls">                  
-          <p style="text-align:right;">Do you have a company code?</p>
-        </div>
-      </div>
+      
 
     </div>
 
@@ -77,12 +72,7 @@
         </div>
       </div>
 
-      <!-- Text input-->
-      <div class="control-group">               
-        <div class="controls">
-          <input type="text" class="form-control" id="companycode" name="companycode" placeholder="company code">
-        </div>
-      </div>
+     
 
       <!-- this is a hidden field that you wont see on the form but is very important in the 
       next section when we talk about load time. this is the basis of our anti-spam method -->
