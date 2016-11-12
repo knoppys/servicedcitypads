@@ -134,7 +134,26 @@
 					
 	</div>
 
-	
+	<script type="text/javascript">
+		
+		//City Guides Navigation 
+		jQuery(document).ready(function(){
+			function sticky_relocate() {  
+			    var window_top = jQuery(window).scrollTop();  
+			    var div_top = jQuery('#scroller-anchor').offset().top - 200;  
+			    if (window_top > div_top) {  
+			        jQuery('#cityguidenavstop').addClass('stick');         
+			    } else {  
+			        jQuery('#cityguidenavstop').removeClass('stick');
+			    }  
+			}  
+			jQuery(function () {  
+			    jQuery(window).scroll(sticky_relocate);  
+			    sticky_relocate();  
+			});
+		})
+
+	</script>
 
 <?php endwhile; else : ?>
 	<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
