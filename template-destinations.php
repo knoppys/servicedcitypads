@@ -1,6 +1,6 @@
 <?php 
 /*
-Template Name: Desintations
+Template Name: Desintations two
 */
 get_header(); ?>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
@@ -17,7 +17,6 @@ get_header(); ?>
 		</div>
 	<?php } ?>
 	<?php get_template_part('search-pulldown');	?>
-	
 
 	<div class="container content-area">
 		<div class="row">
@@ -26,60 +25,70 @@ get_header(); ?>
 					<artcile>		
 						<h1><?php the_title(); ?></h1>				
 						<?php the_content(); ?>
-						<div class="row">							
-							<div class="col-md-6">
-								<h3>Cities</h3>
-								<ul class="destinations-nav">
-								<?php
-								$args = array( 'post_type' => 'locations', 'posts_per_page' => -1, 'order'=> 'ASC', 'orderby' => 'title', 'locationcategory' => 'cities' );
 
-								$myposts = get_posts( $args );
-								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
-									<li>	
-										<?php if(get_post_meta($post->ID,'cityguide', true)){
-											echo '<a class="cutyguidelink" title="City Guide" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'"><i class="fa fa-map-marker"></i></a>';
-										}
-										?>									
-										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-										
-									</li>
-								<?php endforeach; 
-								wp_reset_postdata();?>
+						<!-- Parent Term Nav -->
+						<ul class="nav nav-tabs">
+							<?php				
+							$parentTerms = get_terms( 'locationcategory', array('hide_empty' => false, 'parent' => 0, 'orderby' => 'name', 'order' => 'DESC') );
+							foreach ($parentTerms as $parentTerm)  { ?>				
+								<li>
+									<a href="#<?php echo $parentTerm->term_id; ?>"><?php echo $parentTerm->name; ?></a>								
+								</li>
+							<?php } ?>	
+						</ul>
 
-								</ul>
-							</div>
-										
-							<div class="col-md-6">
-								<h3>City Areas</h3>
-								<ul class="destinations-nav">
-								<?php
-								$args = array( 'post_type' => 'locations', 'posts_per_page' => -1, 'order'=> 'ASC', 'orderby' => 'title', 'locationcategory' => 'city-areas' );
+						<!-- Parent Term Containers -->
+						<div class="tab-content">
+							<?php		
+							//For each parent term, create a Tab Pane
+							$i = 0;
+							foreach ($parentTerms as $parentTerm)  { 
+								if ($i == 0) {$active = 'in active';}
+							?>	
+							<div id="<?php echo $parentTerm->term_id; ?>" class="tab-pane fade <?php echo $active; ?>">	
+														
+								<?php	
+								//For each child term	
+								$parent = $parentTerm->term_id;
+								$childterms = get_terms( 'locationcategory', array('hide_empty' => true, 'parent' => $parent) );
+								foreach ($childterms as $childterm)  { ?>										
+									<ul class="destinations-nav">
+									<h2><?php echo $childterm->name; ?></h2>
+									<?php 
+									$parentID = $childterm->parent;
+									$args = array( 
+									'post_type' => 'locations','posts_per_page' => -1,'order'=> 'ASC','orderby' => 'title',
+									'tax_query' => array(array('taxonomy' => 'locationcategory','field' => 'term_id','terms' => $childterm->parent))
+							        );
+									$myposts = get_posts( $args );
 
-								$myposts = get_posts( $args );
-								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
+									//for each location post 
+									foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
+										<li>	
+											<?php if(get_post_meta($post->ID,'cityguide', true)){
+												echo '<a class="cutyguidelink" title="City Guide" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'"><i class="fa fa-map-marker"></i></a>';
+											}
+											?>									
+											<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+											
+										</li>
+									<?php endforeach; 
+									wp_reset_postdata();?>
+									</ul>	
+								<?php } ?>
 								
-									<li>															
-										<?php if(get_post_meta($post->ID,'cityguide', true)){
-											echo '<a class="cutyguidelink" title="City Guide" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'"><i class="fa fa-map-marker"></i></a>';
-										}
-										?>	
-										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-									</li>
-								<?php endforeach; 
-								wp_reset_postdata();?>
-
-								</ul>
-							</div>
+							</div>										
+							<?php $i++; } ?>		
 						</div>
-						
-					</artcile>					
+					</artcile>
 				</main>
 			</div>
-			
 		</div>
 	</div>
 
-<?php endwhile; else : ?>
+
+
+	<?php endwhile; else : ?>
 	<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
 <?php endif; ?>
 
