@@ -29,7 +29,7 @@ get_header(); ?>
 						<!-- Parent Term Nav -->
 						<ul class="nav nav-tabs">
 							<?php				
-							$parentTerms = get_terms( 'locationcategory', array('hide_empty' => false, 'parent' => 0, 'orderby' => 'name', 'order' => 'DESC') );
+							$parentTerms = get_terms( 'locationcategory', array('hide_empty' => true, 'parent' => 0, 'orderby' => 'name', 'order' => 'DESC') );
 							foreach ($parentTerms as $parentTerm)  { ?>				
 								<li>
 									<a href="#<?php echo $parentTerm->term_id; ?>"><?php echo $parentTerm->name; ?></a>								
