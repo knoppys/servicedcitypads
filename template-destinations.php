@@ -43,41 +43,52 @@ get_header(); ?>
 							//For each parent term, create a Tab Pane
 							$i = 0;
 							foreach ($parentTerms as $parentTerm)  { 
-								if ($i == 0) {$active = 'in active';}
-							?>	
-							<div id="<?php echo $parentTerm->term_id; ?>" class="tab-pane fade <?php echo $active; ?>">	
-														
-								<?php	
-								//For each child term	
-								$parent = $parentTerm->term_id;
-								$childterms = get_terms( 'locationcategory', array('hide_empty' => true, 'parent' => $parent) );
-								foreach ($childterms as $childterm)  { ?>										
-									<ul class="destinations-nav">
-									<h2><?php echo $childterm->name; ?></h2>
-									<?php 
-									$parentID = $childterm->parent;
-									$args = array( 
-									'post_type' => 'locations','posts_per_page' => -1,'order'=> 'ASC','orderby' => 'title',
-									'tax_query' => array(array('taxonomy' => 'locationcategory','field' => 'term_id','terms' => $childterm->parent))
-							        );
-									$myposts = get_posts( $args );
-
-									//for each location post 
-									foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
-										<li>	
-											<?php if(get_post_meta($post->ID,'cityguide', true)){
-												echo '<a class="cutyguidelink" title="City Guide" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'"><i class="fa fa-map-marker"></i></a>';
-											}
-											?>									
-											<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-											
-										</li>
-									<?php endforeach; 
-									wp_reset_postdata();?>
-									</ul>	
-								<?php } ?>
 								
-							</div>										
+								if ($i == 0) { $active = 'in active'; } else { $active = ''; }?>	
+
+									<!-- Child Term Pane -->
+									<div id="<?php echo $parentTerm->term_id; ?>" class="tab-pane <?php echo $active; ?>">	
+																
+										<?php	
+										//For each child term (Cities and City Areas), show the title and get the Locations	
+										$parent = $parentTerm->term_id;
+										$childterms = get_term_children($parent, 'locationcategory');	
+										foreach ($childterms as $child) {
+											$term = get_term_by('id', $child, 'locationcategory'); ?>
+											<ul class="destinations-nav">
+												<h2><?php echo $term->name; ?></h2>
+
+												<?php 
+												$args = array( 
+												'post_type' => 'locations',
+												'posts_per_page' => -1,
+												'order'=> 'ASC',
+												'orderby' => 'title',
+												'tax_query' => array(
+													array(
+														'taxonomy' => 'locationcategory',
+														'field' => 'term_id',
+														'terms' => array($term->term_id))
+													)
+												);
+												$myposts = get_posts( $args );
+
+												//for each location post 
+												foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
+													<li>	
+														<?php if(get_post_meta($post->ID,'cityguide', true)){
+															echo '<a class="cutyguidelink" title="City Guide" href="'.get_site_url().'/?cityguides='.get_the_title(get_post_meta($post->ID,'cityguide', true)).'"><i class="fa fa-map-marker"></i></a>';
+														}
+														?>									
+														<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+														
+													</li>
+												<?php endforeach; 
+												wp_reset_postdata();?>
+											</ul>	
+										<?php }	?>
+										
+									</div>										
 							<?php $i++; } ?>		
 						</div>
 					</artcile>
