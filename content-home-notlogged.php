@@ -92,7 +92,7 @@
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-12">
-						<ul class="row blog-articles">
+						<div class="row blog-articles">
 						<?php
 							// WP_Query arguments
 							$args = array (
@@ -101,17 +101,17 @@
 							);
 
 							// The Query
-							$query = new WP_Query( $args );
-
+							$query = new WP_Query( $args );							
+							$i == 1;
 							// The Loop
-							if ( $query->have_posts() ) {
-								while ( $query->have_posts() ) {
-									$query->the_post(); ?>
-
-									<li class="col-md-6">
+							if ( $query->have_posts() ) {								
+								while ( $query->have_posts() ) {									
+									$query->the_post(); 																
+									?>
+									<div class="col-md-6">
 										<div class="blog-item">
 											<div class="row">
-												<?php 
+												<?php 												
 													$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
 													$url = $thumb['0']; 													
 												?>									
@@ -130,11 +130,15 @@
 												</div>
 											</div>
 										</div>								
-									</li>
+									</div>
+									<?php
+									if ($i == 1) {
+										echo '</div><div class="row blog-articles">';
+									} 
+									?>
+						<?php $i++;} } else {} wp_reset_postdata();	?>						
 
-							<?php } } else {} wp_reset_postdata();	?>						
-
-						</ul>
+						</div>	
 					</div>
 				</div>				
 			</div>
