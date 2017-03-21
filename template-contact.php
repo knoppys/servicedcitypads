@@ -16,11 +16,11 @@ get_header(); ?>
         scrollwheel: false,
           navigationControl: false,
           mapTypeControl: false,
-        center:new google.maps.LatLng(53.40811919999999,-2.9738872000000356),
+        center:new google.maps.LatLng(53.1866138,-2.8907398999999714),
         mapTypeId: google.maps.MapTypeId.ROADMAP};
 
-        map = new google.maps.Map(document.getElementById("gmap_canvas2"), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(53.40811919999999, -2.9738872000000356)});infowindow = new google.maps.InfoWindow({
-          content:"<b>Serviced City Pads</b><br/>Seymore Street<br/>L3 5PE Liverpool" });
+        map = new google.maps.Map(document.getElementById("gmap_canvas2"), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(53.1866138, -2.8907398999999714)});infowindow = new google.maps.InfoWindow({
+          content:"<b>Serviced City Pads</b><br/>7 &amp; 8 The Old Rectory<br/>St Mary's Hill<br/>Chester<br>CH1 2DW" });
 
         google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
       })

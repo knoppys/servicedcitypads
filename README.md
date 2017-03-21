@@ -1,4 +1,5 @@
 Changelog
+V2	   -- Added new address and phone numbers after the office move to chester.
 V1.8.9 -- Added a new etmplate for teh Destinations page to allow lists of heirachial categories of Locations. 
 V1.3.9 -- Bug fix for City Guides, incorrect meta showing.
 

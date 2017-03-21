@@ -47,12 +47,12 @@
 				<i class="fa fa-phone"></i>
 				<h4>On the phone</h4>
 					<a href="tel:08443358866">Calls from UK: 0844 335 8866</a><br/> 
-					<a href="tel:+441517098000">International: +44 151 709 8000</a>
+					<a href="tel:+441517098000">International: +44 1244 346 869</a>
 				</div>
 
 				<div class="col-sm-4 address">
 				<h2>Serviced City Pads Ltd</h2>
-				<p>29-31 Seymour Terrace<br/>Seymour Street<br/>Liverpool<br/>L3 5PE</p>
+				<p>7 &amp; 8 The Old Rectory<br/>St Mary’s Hill<br/>Chester<br/>CH1 2DW</p>
 				</div>
 
 				<div class="col-sm-4 email">
