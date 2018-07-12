@@ -1,212 +1,153 @@
+<?php
+$user = wp_get_current_user();
+$username = $user->user_email;
+$isadmin = get_user_meta($user->ID, 'companyadmin', true);
+$companyname = get_user_meta($user->ID, 'companyname', true);		
 
+// WP_Query arguments
+if ($isadmin == 'Y') {
+	$args = array (
+		'posts_per_page'	=>	-1,
+		'meta_key'	=>	'guestname',
+		'orderby'	=>	'meta_value',
+		'order'	=>	ASC,
+		'post_type'              => array( 'bookings' ),
+		'meta_query'             => array(
+			'relation' => 'OR',
+			array(
+				'key'       => 'operatorname',
+				'value'     => $companyname,
+			),
+			array(
+				'key'       => 'clientname',
+				'value'     => $companyname,
+			),
+		),
+	);
+} else {
+	$args = array (
+		'posts_per_page'	=>	-1,
+		'meta_key'	=>	'arrivaldate',
+		'orderby'	=>	'meta_value',
+		'order'	=>	ASC,
+		'post_type'              => array( 'bookings' ),
+		'meta_query'             => array(													
+			array(
+				'key'       => 'email',
+				'value'     => $username,
+			),															
+		),
+	);
+}
+$bookings = get_posts($args);
+?>
 <section class="logged-in-home">
-	<div class="container">
-		<divc class="row">
-			<div class="col-md-12">
-		
-					<div>
-
-						<!-- Nav tabs -->
-						<ul class="nav nav-tabs" role="tablist">
-
-							<li role="presentation" class="active"><a href="#Bookings" aria-controls="Bookings" role="tab" data-toggle="tab">Bookings</a></li>
-							<li role="presentation"><a href="#Search" aria-controls="Search" role="tab" data-toggle="tab">Availability Enquiry</a></li>
-
-						</ul>
-
-						<!-- Tab panes -->
-						<div class="tab-content">
-							<div role="tabpanel" class="tab-pane active" id="Bookings">
-								<p>Please find a list below of all your currently active bookings.</p>
-								<p>Click on a booking name to view the full booking details.</p>
-								<div class="bs-example">
-    								<div class="panel-group" id="accordion">
-    									<div class="panel panel-default">	            
-										
-										<?php 
-								
-										//get the userinfo variable
-										$user = wp_get_current_user();
-										$username = $user->user_email;
-										$isadmin = get_user_meta($user->ID, 'companyadmin', true);
-										$companyname = get_user_meta($user->ID, 'companyname', true);		
-
-														
-
-											// WP_Query arguments
-												if ($isadmin == 'Y') {
-													$args = array (
-														'posts_per_page'	=>	-1,
-														'meta_key'	=>	'guestname',
-														'orderby'	=>	'meta_value',
-														'order'	=>	ASC,
-														'post_type'              => array( 'bookings' ),
-														'meta_query'             => array(
-															'relation' => 'OR',
-															array(
-																'key'       => 'operatorname',
-																'value'     => $companyname,
-															),
-															array(
-																'key'       => 'clientname',
-																'value'     => $companyname,
-															),
-														),
-													);
-												} else {
-													$args = array (
-														'posts_per_page'	=>	-1,
-														'meta_key'	=>	'arrivaldate',
-														'orderby'	=>	'meta_value',
-														'order'	=>	ASC,
-														'post_type'              => array( 'bookings' ),
-														'meta_query'             => array(													
-															array(
-																'key'       => 'email',
-																'value'     => $username,
-															),															
-														),
-													);
-												}
-												
-
-												// The Query
-												$query = new WP_Query( $args );
-
-												$i = 1;
-												if ( $query->have_posts() ) {
-													while ( $query->have_posts() ) {
-														$query->the_post(); 
-
-														$displayname = get_post_meta($post->ID, 'displayname', true);
-
-														if ($displayname) {
-															$displaynametext = $displayname;
-														} else {
-															$displaynametext = get_post_meta($post->ID, 'apartmentname', true);
-														}
-														
-
-
-
-														$apartmenttitle = get_post_meta($post->ID, 'apartmentname', true);
-										                $page = get_page_by_title( $apartmenttitle, OBJECT, 'apartments');
-										                $permalink = $page->guid;
-
-														$apartmentaddress   = get_post_meta($page->ID,'address', true );            
-                										$aprtmentlocation   = get_post_meta($page->ID,'apptlocation1', true);
-                										$aprtmentlocation2  = get_post_meta($page->ID,'apptlocation2', true);
-                										$apartmentpostcode  = get_post_meta($page->ID,'postcode', true );
-                										$apartmentstate     = get_post_meta($page->ID,'state', true );
-                										$apartmentcountry   = get_post_meta($page->ID,'country', true );
-                										$fulladdress = $apartmentaddress.', '.$aprtmentlocation.', '.$aprtmentlocation2.', '.$apartmentstate.'. '.$apartmentpostcode
-														?>
-
-														<div id="">
-														<div class="panel-heading">
-											                <h4 class="panel-title">
-											                	<?php
-											                	if ($isadmin == 'Y') {
-											                		$titletext = get_post_meta($post->ID, 'guestname', true);
-											                	} else {
-											                		$titletext = get_post_meta($post->ID, 'apartmentname', true);
-											                	}
-											                	
-											                	?>
-											                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i; ?>"><?php echo $titletext; ?></a>
-											                </h4>
-											            </div>
-
-											            <div id="collapse<?php echo $i; ?>" class="panel-collapse collapse">
-											                <div class="panel-body">
-											                    <table width="100%">
-											                    	<tr>
-											                    		<td width="25%">Guest Name:</td>
-											                    		<td><?php echo get_post_meta($post->ID, 'guestname', true ); ?></td>
-											                    	</tr>
-											                    	<tr>
-											                    		<td width="25%">Apartment Name:</td>
-											                    		<td><?php echo $displaynametext; ?></td>
-											                    	</tr>
-											                    	<tr>
-											                    		<td width="25%">Apartment Address:</td>
-											                    		<td><?php echo $fulladdress ?></td>
-											                    	</tr>
-											                    	<tr>
-											                    		<td width="25%">Checkin Date:</td>
-											                    		<?php
-											                    		$checkintime = get_post_meta($page->ID, 'apptchekintime', true);
-											                    		$checkouttime = get_post_meta($page->ID, 'apptchekouttime', true);
-											                    		$arrivaldate = get_post_meta($post->ID,'arrivaldate', true);
-											                    		$leavingdate = get_post_meta($post->ID,'leavingdate', true);
-											                    		?>
-											                    		<td><?php if($arrivaldate){echo $arrivaldate;} else {echo 'Other';} ?> from <?php if($checkintime){echo $checkintime;} else {echo '(Check in time not available)';} ?></td>
-											                    	</tr>
-											                    	<tr>
-											                    		<td width="25%">Checkout Date:</td>
-											                    		<td><?php if($leavingdate){echo $leavingdate;} else {echo 'Other';} ?> from <?php if($checkouttime){echo $checkouttime;} else {echo '(Check out time not available)';} ?></td>
-											                    	</tr>										                    	
-											                    </table>
-											                    <table style="margin-top:20px;">
-											                    	<tr>
-											                    		<td style="padding:5px;"><a class="btn btn-primary" href="https://www.google.co.uk/maps/place/<?php echo $apartmentpostcode; ?>" target="_blank">View on Map</a></td>
-											                    		<td style="padding:5px;"><a class="btn btn-primary" href="<?php echo get_site_url() . '/?post_type=apartments&p=' . $page->ID ?>" target="_blank">View on website</a></td>
-											                    		<td class="amendmentclick" style="padding:5px;"><a class="btn btn-primary">Request Amendment</a></td>
-											                    	</tr>             	
-																</table>
-																<table id="form-container">
-																	<tr>
-											                    		<td>
-											                    			 
-											                    			<form class="form-horizontal amendmentform" name="amendmentform">  										                    				    
-											                    				Enter your request here and one of our team will be in touch with you shortly
-											                    			 	<input type="hidden" name="guestname" value="<?php echo get_post_meta($post->ID, 'guestname', true ); ?>">
-																				<input type="hidden" name="arrival" value="<?php echo $arrivaldate; ?>">
-																				<input type="text" name="message" style="display: block;width: 100%;margin: 9px 0;">
-																				<a id="amendmentsubmit"class="btn btn-primary">Send Request</a>							  
-																			</form>
-
-																			<div class="success">
-																				<p>Thankyou, your request has been recieved and one of our team will be in touch with your shortly.</p>
-																			</div>
-											                    		</td>
-
-											                    	</tr>
-																</table>
-											                </div>
-											            </div>
-														</div>
-
-
-													<?php $i++; }} else { ?>
-
-														<div style="padding:10px;">
-															<p>Sorry but there are no bookings that meet your criteria.</p>
-														<p>This either means there are no bookings associated with your email address, or you are not a company admin.</p>
-														</div>
-
-													<?php }
-
-												
-												wp_reset_postdata();
-
-											
-
-											?>
-
-								 		</div>
-    								</div>
-    							</div>
-							</div>
-							<div role="tabpanel" class="tab-pane" id="Search">								
-								<?php get_template_part('booking-request'); ?>					
-							</div>	    
-						</div>
-
-					</div>
-			
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8">
+				<h1>Your Bookings</h1>
+				<table class="bookingtable">
+					<thead>
+						<tr>
+						<td>Arrival Date</td>
+						<td>Leaving Date</td>
+						<td>Guest Name</td>
+						<td>Apartment Name</td>
+						<td>Location</td>
+						<td style="text-align: center;">No of nights</td>
+						<td style="text-align: right;">Nightly Rate</td>
+						<td style="text-align: center;">Cost Code</td>
+						<td style="text-align: right;">Total Cost</td>
+						</tr>										
+					</thead>					
+					<?php
+					foreach ($bookings as $booking) { 
+						//Booking Meta
+						$meta = get_post_meta($booking->ID); 
+						//Apartment Meta						
+		                $page = get_page_by_title( $meta['apartmentname'][0], OBJECT, 'apartments');
+		                $permalink = $page->guid;
+		                $apartmentmeta = get_post_meta($page->ID);	
+		                //GFet map link  
+				
+						?> <tr>
+						<td><span class="entrylabel">Arrival Date (click to view booking)</span><a target="_blank" title="View Booking" href="<?php echo get_the_permalink($booking->ID); ?>"><?php echo $meta['arrivaldate'][0]; ?></a></td>
+						<td><span class="entrylabel">Leaving Date</span><?php echo $meta['leavingdate'][0]; ?></td>
+						<td><span class="entrylabel">Guest Name</span><?php echo $meta['guesname'][0]; ?></td>
+						<td><span class="entrylabel">Apartment Name</span><?php if ($meta['displayname'][0]) {echo $meta['displayname'][0];}else{echo $meta['apartmentname'][0];}?></td>
+						<td><span class="entrylabel">Location (click to view map)</span>
+							<a title="View on map" href="https://www.google.co.uk/maps/place/<?php echo $apartmentmeta['postcode'][0]; ?>" target="_blank">
+								<?php echo $apartmentmeta['address'][0]; ?><br>	
+								<?php echo $apartmentmeta['apptlocation2'][0]; ?>. 
+								<?php echo $apartmentmeta['postcode'][0]; ?>							
+							</a>
+						</td>
+						<td style="text-align: center;"><span class="entrylabel">No of nights</span><?php echo $meta['numberofnights'][0]; ?></td>
+						<td style="text-align: right;"><span class="entrylabel">Nightly Rate</span>£<?php echo $meta['rentalprice'][0]; ?></td>
+						<td style="text-align: center;"><span class="entrylabel">Cost Code</span><?php echo $meta['costcode'][0]; ?></td>
+						<td class="finaltd" style="text-align: right;"><span class="entrylabel">Total Cost</span>£<?php echo $meta['totalcost'][0]; ?></td>						
+					</tr> <?php }	?>
+				</table>
+				<button id="export" data-export="export">Export to CSV</button>
 			</div>
 		</div>
-		<div class="content-area"></div>
+
 	</div>
 </section>
+<script type="text/javascript">
+
+	jQuery(document).ready(function(){
+		jQuery("#export").click(function(){
+		  jQuery("table").tableToCSV();
+		});
+	})
+
+
+	jQuery.fn.tableToCSV = function() {
+    
+    var clean_text = function(text){
+        text = text.replace(/"/g, '""');
+        return '"'+text+'"';
+    };
+    
+	jQuery(this).each(function(){
+			var table = jQuery(this);
+			var caption = jQuery(this).find('caption').text();
+			var title = [];
+			var rows = [];
+
+			jQuery(this).find('tr').each(function(){
+				var data = [];
+				jQuery(this).find('th').each(function(){
+                    var text = clean_text(jQuery(this).text());
+					title.push(text);
+					});
+				jQuery(this).find('td').each(function(){
+                    var text = clean_text(jQuery(this).text());
+					data.push(text);
+					});
+				data = data.join(",");
+				rows.push(data);
+				});
+			title = title.join(",");
+			rows = rows.join("\n");
+
+			var csv = title + rows;
+			var uri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+			var download_link = document.createElement('a');
+			download_link.href = uri;
+			var ts = new Date().getTime();
+			if(caption==""){
+				download_link.download = ts+".csv";
+			} else {
+				download_link.download = caption+"-"+ts+".csv";
+			}
+			document.body.appendChild(download_link);
+			download_link.click();
+			document.body.removeChild(download_link);
+	});
+    
+};
+
+</script>
+<?php get_footer('bookings'); ?>
