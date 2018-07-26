@@ -6,17 +6,15 @@
 			<div class="col-sm-8" id="<?php get_the_ID(); ?>">
 				<main>
 					<artcile <?php post_class(); ?>>
-						<?php  echo clientemail(get_post_meta($post->ID,'refid',true)); ?>
+						<?php  echo clientemail($post->ID); ?>
 					</artcile>					
-				</main>
+				</main>	
 			</div>
 			<div class="col-sm-4">
 				<aside>
 					<h2><i style="padding-right:10px;" class="fa fa-newspaper-o"></i>Booking Options</h2>	
 					<table style="margin-top:20px;" class="bookingoptions">
-	                	<tr>
-	                		<td style="padding:5px;"><a class="btn btn-primary" href="https://www.google.co.uk/maps/place/<?php echo $apartmentpostcode; ?>" target="_blank">View on Map</a></td>
-	                		<td style="padding:5px;"><a class="btn btn-primary" href="<?php echo get_site_url() . '/?post_type=apartments&p=' . $page->ID ?>" target="_blank">View on website</a></td>
+	                	<tr>	                		
 	                		<td class="amendmentclick" style="padding:5px;"><a class="btn btn-primary">Request Amendment</a></td>	                		
 	                	</tr>             	
 					</table>	

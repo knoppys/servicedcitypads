@@ -2,12 +2,24 @@
 $user = wp_get_current_user();
 $username = $user->user_email;
 $isadmin = get_user_meta($user->ID, 'companyadmin', true);
-$companyname = get_user_meta($user->ID, 'companyname', true);		
+$companyname = get_user_meta($user->ID, 'companyname', true);	
+
+//Mobile rules. We could use CSS but this text would show up in the csv download.	
+function mobile($string){
+
+	if (wp_is_mobile()) {
+		return $string;
+	} else {
+		return '';
+	}
+
+}
 
 // WP_Query arguments
 if ($isadmin == 'Y') {
 	$args = array (
 		'posts_per_page'	=>	-1,
+		'post_status' => array('publish','archive'),
 		'meta_key'	=>	'guestname',
 		'orderby'	=>	'meta_value',
 		'order'	=>	ASC,
@@ -27,6 +39,7 @@ if ($isadmin == 'Y') {
 } else {
 	$args = array (
 		'posts_per_page'	=>	-1,
+		'post_status' => array('publish','archive'),
 		'meta_key'	=>	'arrivaldate',
 		'orderby'	=>	'meta_value',
 		'order'	=>	ASC,
@@ -71,21 +84,15 @@ $bookings = get_posts($args);
 		                //GFet map link  
 				
 						?> <tr>
-						<td><span class="entrylabel">Arrival Date (click to view booking)</span><a target="_blank" title="View Booking" href="<?php echo get_the_permalink($booking->ID); ?>"><?php echo $meta['arrivaldate'][0]; ?></a></td>
-						<td><span class="entrylabel">Leaving Date</span><?php echo $meta['leavingdate'][0]; ?></td>
-						<td><span class="entrylabel">Guest Name</span><?php echo $meta['guesname'][0]; ?></td>
-						<td><span class="entrylabel">Apartment Name</span><?php if ($meta['displayname'][0]) {echo $meta['displayname'][0];}else{echo $meta['apartmentname'][0];}?></td>
-						<td><span class="entrylabel">Location (click to view map)</span>
-							<a title="View on map" href="https://www.google.co.uk/maps/place/<?php echo $apartmentmeta['postcode'][0]; ?>" target="_blank">
-								<?php echo $apartmentmeta['address'][0]; ?><br>	
-								<?php echo $apartmentmeta['apptlocation2'][0]; ?>. 
-								<?php echo $apartmentmeta['postcode'][0]; ?>							
-							</a>
-						</td>
-						<td style="text-align: center;"><span class="entrylabel">No of nights</span><?php echo $meta['numberofnights'][0]; ?></td>
-						<td style="text-align: right;"><span class="entrylabel">Nightly Rate</span>£<?php echo $meta['rentalprice'][0]; ?></td>
-						<td style="text-align: center;"><span class="entrylabel">Cost Code</span><?php echo $meta['costcode'][0]; ?></td>
-						<td class="finaltd" style="text-align: right;"><span class="entrylabel">Total Cost</span>£<?php echo $meta['totalcost'][0]; ?></td>						
+						<td><?php mobile('<span class="entrylabel">Arrival Date (click to view booking)</span>'); ?><a target="_blank" title="View Booking" href="<?php echo get_the_permalink($booking->ID); ?>"><?php echo $meta['arrivaldate'][0]; ?></a></td>
+						<td><?php mobile('<span class="entrylabel">Leaving Date</span>'); ?><?php echo $meta['leavingdate'][0]; ?></td>
+						<td><?php mobile('<span class="entrylabel">Guest Name</span>'); ?><?php echo $meta['guesname'][0]; ?></td>
+						<td><?php mobile('<span class="entrylabel">Apartment Name</span>'); ?><?php if ($meta['displayname'][0]) {echo $meta['displayname'][0];}else{echo $meta['apartmentname'][0];}?></td>
+						<td><?php mobile('<span class="entrylabel">Location (click to view map)</span>'); ?><a title="View on map" href="https://www.google.co.uk/maps/place/<?php echo $apartmentmeta['postcode'][0]; ?>" target="_blank"><?php echo $apartmentmeta['address'][0]; ?> <?php echo $apartmentmeta['apptlocation2'][0]; ?>. <?php echo $apartmentmeta['postcode'][0]; ?></a></td>
+						<td style="text-align: center;"><?php mobile('<span class="entrylabel">No of nights</span>');?><?php echo $meta['numberofnights'][0]; ?></td>
+						<td style="text-align: right;"><?php mobile('<span class="entrylabel">Nightly Rate</span>');?>£<?php echo $meta['rentalprice'][0]; ?></td>
+						<td style="text-align: center;"><?php mobile('<span class="entrylabel">Cost Code</span>');?><?php echo $meta['costcode'][0]; ?></td>
+						<td class="finaltd" style="text-align: right;"><?php mobile('<span class="entrylabel">Total Cost</span>');?>£<?php echo $meta['totalcost'][0]; ?></td>						
 					</tr> <?php }	?>
 				</table>
 				<button id="export" data-export="export">Export to CSV</button>
@@ -98,7 +105,7 @@ $bookings = get_posts($args);
 
 	jQuery(document).ready(function(){
 		jQuery("#export").click(function(){
-		  jQuery("table").tableToCSV();
+		  jQuery(".bookingtable").tableToCSV();
 		});
 	})
 
