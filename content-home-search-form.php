@@ -1,10 +1,3 @@
-<?php
-
-
-
-?>
-
-
 <form class="form-horizontal home-search" id="home-search">
 	<fieldset>
 

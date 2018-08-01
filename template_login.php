@@ -1,9 +1,7 @@
 <?php
-
 /*
 Template Name: Login
 */
-
 get_header();
 
 

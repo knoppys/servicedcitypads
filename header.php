@@ -1,7 +1,3 @@
-<?php
-//include the debuf file
-//include 'debug.php';
-?>
 <!DOCTYPE html>
 <html>
 <head>

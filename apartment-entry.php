@@ -1,4 +1,3 @@
-
 <?php
 
 	//get all the post meta

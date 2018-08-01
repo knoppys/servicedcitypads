@@ -1,4 +1,3 @@
-
 <?php
 //get the meta keys and values of the current post
 $locationone = get_post_meta($post->ID, 'apptlocation1', true);

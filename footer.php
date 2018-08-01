@@ -1,4 +1,3 @@
-	
 <footer>
 	<!-- Testimonials Slider -->
 
