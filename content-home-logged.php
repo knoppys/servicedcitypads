@@ -69,7 +69,7 @@ $bookings = get_posts($args);
 						<td>Location</td>
 						<td style="text-align: center;">No of nights</td>
 						<td style="text-align: right;">Nightly Rate</td>
-						<td style="text-align: center;">Cost Code</td>
+						<td style="text-align: center;">Code/Country of Origin</td>
 						<td style="text-align: right;">Total Cost</td>
 						</tr>										
 					</thead>					
@@ -91,7 +91,7 @@ $bookings = get_posts($args);
 						<td><?php mobile('<span class="entrylabel">Location (click to view map)</span>'); ?><a title="View on map" href="https://www.google.co.uk/maps/place/<?php echo $apartmentmeta['postcode'][0]; ?>" target="_blank"><?php echo $apartmentmeta['address'][0]; ?> <?php echo $apartmentmeta['apptlocation2'][0]; ?>. <?php echo $apartmentmeta['postcode'][0]; ?></a></td>
 						<td style="text-align: center;"><?php mobile('<span class="entrylabel">No of nights</span>');?><?php echo $meta['numberofnights'][0]; ?></td>
 						<td style="text-align: right;"><?php mobile('<span class="entrylabel">Nightly Rate</span>');?>£<?php echo $meta['rentalprice'][0]; ?></td>
-						<td style="text-align: center;"><?php mobile('<span class="entrylabel">Cost Code</span>');?><?php echo $meta['costcode'][0]; ?></td>
+						<td style="text-align: center;"><?php mobile('<span class="entrylabel">Code/Country of Origin</span>');?><?php echo $meta['costcode'][0]; ?></td>
 						<td class="finaltd" style="text-align: right;"><?php mobile('<span class="entrylabel">Total Cost</span>');?>£<?php echo $meta['totalcost'][0]; ?></td>						
 					</tr> <?php }	?>
 				</table>
@@ -102,59 +102,10 @@ $bookings = get_posts($args);
 	</div>
 </section>
 <script type="text/javascript">
-
-	jQuery(document).ready(function(){
-		jQuery("#export").click(function(){
-		  jQuery(".bookingtable").tableToCSV();
-		});
-	})
-
-
-	jQuery.fn.tableToCSV = function() {
-    
-    var clean_text = function(text){
-        text = text.replace(/"/g, '""');
-        return '"'+text+'"';
-    };
-    
-	jQuery(this).each(function(){
-			var table = jQuery(this);
-			var caption = jQuery(this).find('caption').text();
-			var title = [];
-			var rows = [];
-
-			jQuery(this).find('tr').each(function(){
-				var data = [];
-				jQuery(this).find('th').each(function(){
-                    var text = clean_text(jQuery(this).text());
-					title.push(text);
-					});
-				jQuery(this).find('td').each(function(){
-                    var text = clean_text(jQuery(this).text());
-					data.push(text);
-					});
-				data = data.join(",");
-				rows.push(data);
-				});
-			title = title.join(",");
-			rows = rows.join("\n");
-
-			var csv = title + rows;
-			var uri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-			var download_link = document.createElement('a');
-			download_link.href = uri;
-			var ts = new Date().getTime();
-			if(caption==""){
-				download_link.download = ts+".csv";
-			} else {
-				download_link.download = caption+"-"+ts+".csv";
-			}
-			document.body.appendChild(download_link);
-			download_link.click();
-			document.body.removeChild(download_link);
+jQuery(document).ready(function(){
+	jQuery("#export").click(function(){
+	  jQuery(".bookingtable").tableToCSV();
 	});
-    
-};
-
+})
 </script>
 <?php get_footer('bookings'); ?>
