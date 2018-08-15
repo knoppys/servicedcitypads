@@ -172,20 +172,20 @@
 		<div class="col-md-6">
 			<ul class="facilities">
 				<?php if( ! empty( $internet ) ) { echo '<li><i class="fa fa-wifi" style="padding-right:10px;" title="Internet access"></i><span class="mobile-tool">Internet Access:</span>' . $internet . '</li>'; } ?>
-														<?php if( ! empty( $sleeps ) ) { echo '<li><i class="fa fa-users" style="padding-right:10px;" title="Sleeps"></i><span class="mobile-tool">Number of guests:</span>Sleeps ' . $sleeps , $sofabed . '</li>'; } ?>
-														<?php if( ! empty( $bedrooms ) ) { echo '<li><i class="fa fa-bed" style="padding-right:10px;" title="Number of rooms"></i><span class="mobile-tool">Number of rooms:</span>' . $bedrooms . ' Bedrooms</li>'; } ?>
-														<?php if( ! empty( $tv ) ) { echo '<li><i class="fa fa-desktop" style="padding-right:10px;" title="TV"></i><span class="mobile-tool">TV</span>' . $tv . '</li>'; } ?>
-														<?php if( ! empty( $dvd ) ) { echo '<li><i class="fa fa-youtube-play" style="padding-right:10px;" title="DVD"></i><span class="mobile-tool">DVD Player:</span>' . $dvd . '</li>'; } ?>
-														<?php if( ! empty( $housekeeping ) ) { echo '<li><i class="fa fa-check-square" style="padding-right:10px;" title="Housekeeping"></i><span class="mobile-tool">Housekeeping:</span>' . $housekeeping . '</li>'; } ?>					
+				<?php if( ! empty( $sleeps ) ) { echo '<li><i class="fa fa-users" style="padding-right:10px;" title="Sleeps"></i><span class="mobile-tool">Number of guests:</span>Sleeps ' . $sleeps , $sofabed . '</li>'; } ?>
+				<?php if( ! empty( $bedrooms ) ) { echo '<li><i class="fa fa-bed" style="padding-right:10px;" title="Number of rooms"></i><span class="mobile-tool">Number of rooms:</span>' . $bedrooms . ' Bedrooms</li>'; } ?>
+				<?php if( ! empty( $tv ) ) { echo '<li><i class="fa fa-desktop" style="padding-right:10px;" title="TV"></i><span class="mobile-tool">TV</span>' . $tv . '</li>'; } ?>
+				<?php if( ! empty( $dvd ) ) { echo '<li><i class="fa fa-youtube-play" style="padding-right:10px;" title="DVD"></i><span class="mobile-tool">DVD Player:</span>' . $dvd . '</li>'; } ?>
+				<?php if( ! empty( $housekeeping ) ) { echo '<li><i class="fa fa-check-square" style="padding-right:10px;" title="Housekeeping"></i><span class="mobile-tool">Housekeeping:</span>' . $housekeeping . '</li>'; } ?>					
 			</ul>							
 		</div>
 		<div class="col-md-6">
 			<ul class="facilities">
 				<?php if( ! empty( $reception ) ) { echo '<li><i class="fa fa-user-plus" style="padding-right:10px;" title="Reception"></i><span class="mobile-tool">Reception:</span>' . $reception . '</li>'; } ?>
-														<?php if( ! empty( $kitchen ) ) { echo '<li><i class="fa fa-cutlery" style="padding-right:10px;" title="Kitchen Facilities"></i><span class="mobile-tool">Kitchen Facilities:</span>' . $kitchen . '</li>'; } ?>
-														<?php if( ! empty( $parking ) ) { echo '<li><i class="fa fa-car" style="padding-right:10px;" title="Parking available"></i><span class="mobile-tool">Parking:</span>' . $parking . '</li>'; } ?>
-														<?php if( ! empty( $lift ) ) { echo '<li><i class="fa fa-wheelchair" style="padding-right:10px;" title="Disabled / Lift Access"></i><span class="mobile-tool">Disabled / Lift Access:</span>' . $lift . '</li>'; } ?>
-														<?php if( ! empty( $laundry ) ) { echo '<li><i class="fa fa-cog" style="padding-right:10px;" title="Laundry Facilities"></i><span class="mobile-tool">Laundry Facilities:</span>' . $laundry . '</li>'; } ?>
+				<?php if( ! empty( $kitchen ) ) { echo '<li><i class="fa fa-cutlery" style="padding-right:10px;" title="Kitchen Facilities"></i><span class="mobile-tool">Kitchen Facilities:</span>' . $kitchen . '</li>'; } ?>
+				<?php if( ! empty( $parking ) ) { echo '<li><i class="fa fa-car" style="padding-right:10px;" title="Parking available"></i><span class="mobile-tool">Parking:</span>' . $parking . '</li>'; } ?>
+				<?php if( ! empty( $lift ) ) { echo '<li><i class="fa fa-wheelchair" style="padding-right:10px;" title="Disabled / Lift Access"></i><span class="mobile-tool">Disabled / Lift Access:</span>' . $lift . '</li>'; } ?>
+				<?php if( ! empty( $laundry ) ) { echo '<li><i class="fa fa-cog" style="padding-right:10px;" title="Laundry Facilities"></i><span class="mobile-tool">Laundry Facilities:</span>' . $laundry . '</li>'; } ?>
 				<?php if( ! empty( $apptchekintime ) ) { echo '<li><i class="fa fa-clock-o" style="padding-right:10px;" title="Check In Time"></i>Check In Time: ' . $apptchekintime . '</li>'; } ?>
 				<?php if( ! empty( $apptchekouttime ) ) { echo '<li><i class="fa fa-clock-o" style="padding-right:10px;" title="Check Out Time"></i>Check Out Time: ' . $apptchekouttime . '</li>'; } ?>
 			</ul>
