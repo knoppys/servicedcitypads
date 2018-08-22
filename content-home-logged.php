@@ -12,8 +12,8 @@ if ($filter) {
 	$datefrom = $filter_array['datefrom'];
 	$dateto = $filter_array['dateto'];	
 } else {
-	$datefrom = '';
-	$dateto = '';
+	$datefrom = '1970-01-01';
+	$dateto = '9999-01-01';
 }
 
 //Mobile rules. We could use CSS but this text would show up in the csv download.	
