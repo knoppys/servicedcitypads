@@ -82,6 +82,7 @@ $bookings = get_posts($args);
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Your Bookings</h1>
+				<p>Filter by booking date (All bookings made between).</p>
 				<form class="filterform" action="<?php echo get_site_url(); ?>">
 					<label>Date From</label>
 					<input type="date" name="datefrom">
