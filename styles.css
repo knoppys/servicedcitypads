@@ -3,3 +3,24 @@ span.mobile-tool {color: #aa0042;padding-right: 10px;display: block;}
 i.fa.fa-star {
     display: inline;
 }
+form.filterform {
+    padding: 20px 0;
+}
+
+form.filterform label {
+    display: inline-block;
+}
+
+form.filterform input {
+    margin: 0 20px;
+}
+
+@media all and (max-width:768px) {
+	form.filterform label {
+	    display: block;
+	}
+
+	form.filterform input {
+	    margin: 10px 0;
+	}
+}

@@ -4,6 +4,18 @@ $username = $user->user_email;
 $isadmin = get_user_meta($user->ID, 'companyadmin', true);
 $companyname = get_user_meta($user->ID, 'companyname', true);	
 
+
+$filter = $_SERVER["QUERY_STRING"];
+//If there is a query then split it up 
+if ($filter) {		
+	parse_str($filter, $filter_array);
+	$datefrom = $filter_array['datefrom'];
+	$dateto = $filter_array['dateto'];	
+} else {
+	$datefrom = '';
+	$dateto = '';
+}
+
 //Mobile rules. We could use CSS but this text would show up in the csv download.	
 function mobile($string){
 
@@ -33,9 +45,14 @@ if ($isadmin == 'Y') {
 			array(
 				'key'       => 'clientname',
 				'value'     => $companyname,
-			),
+			)
 		),
-	);
+		'date_query' => array(
+				'after' => $datefrom,
+				'before' => $dateto,
+				'inclusive' => true
+			)
+		);
 } else {
 	$args = array (
 		'posts_per_page'	=>	-1,
@@ -48,20 +65,34 @@ if ($isadmin == 'Y') {
 			array(
 				'key'       => 'email',
 				'value'     => $username,
-			),															
+			),
 		),
+		'date_query' => array(
+			'after' => $datefrom,
+			'before' => $dateto,
+			'inclusive' => true
+		)															
 	);
 }
+
 $bookings = get_posts($args);
 ?>
 <section class="logged-in-home">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-offset-2 col-md-8">
+			<div class="col-md-12">
 				<h1>Your Bookings</h1>
+				<form class="filterform" action="<?php echo get_site_url(); ?>">
+					<label>Date From</label>
+					<input type="date" name="datefrom">
+					<label>Date To</label>
+					<input type="date" name="dateto">
+					<input class="btn btn-primary" type="submit" value="Filter">
+				</form>
 				<table class="bookingtable">
 					<thead>
 						<tr>
+						<td>Booking Date</td>
 						<td>Arrival Date</td>
 						<td>Leaving Date</td>
 						<td>Guest Name</td>
@@ -84,7 +115,8 @@ $bookings = get_posts($args);
 		                //GFet map link  
 				
 						?> <tr>
-						<td><?php mobile('<span class="entrylabel">Arrival Date (click to view booking)</span>'); ?><a target="_blank" title="View Booking" href="<?php echo get_the_permalink($booking->ID); ?>"><?php echo $meta['arrivaldate'][0]; ?></a></td>
+						<td><?php mobile('<span class="entrylabel">Booking Date (click to view booking)</span>'); ?><a target="_blank" title="View Booking" href="<?php echo get_the_permalink($booking->ID); ?>"><?php echo get_the_date('Y/m/d',$booking->ID); ?></a></td>
+						<td><?php mobile('<span class="entrylabel">Arrival Date </span>'); ?><?php echo $meta['arrivaldate'][0]; ?></td>
 						<td><?php mobile('<span class="entrylabel">Leaving Date</span>'); ?><?php echo $meta['leavingdate'][0]; ?></td>
 						<td><?php mobile('<span class="entrylabel">Guest Name</span>'); ?><?php echo $meta['guesname'][0]; ?></td>
 						<td><?php mobile('<span class="entrylabel">Apartment Name</span>'); ?><?php if ($meta['displayname'][0]) {echo $meta['displayname'][0];}else{echo $meta['apartmentname'][0];}?></td>
