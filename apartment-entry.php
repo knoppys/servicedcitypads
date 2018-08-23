@@ -49,7 +49,7 @@
     }
 
 	$address = $fulladdress;
-	$coordinates = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($address) . '&sensor=true');
+	$coordinates = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($address) . '&sensor=true&key=AIzaSyDSJz2JdYszb3U8eK5LosFQ6phu6WXV8-c');
 	$coordinates = json_decode($coordinates);
  
 		$lat = $coordinates->results[0]->geometry->location->lat;
