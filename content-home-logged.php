@@ -12,8 +12,8 @@ if ($filter) {
 	$datefrom = $filter_array['datefrom'];
 	$dateto = $filter_array['dateto'];	
 } else {
-	$datefrom = '1970-01-01';
-	$dateto = '9999-01-01';
+	$datefrom = '';
+	$dateto = '';
 }
 
 //Mobile rules. We could use CSS but this text would show up in the csv download.	
@@ -85,9 +85,9 @@ $bookings = get_posts($args);
 				<p>Filter by booking date (All bookings made between).</p>
 				<form class="filterform" action="<?php echo get_site_url(); ?>">
 					<label>Date From</label>
-					<input type="date" name="datefrom">
+					<input type="date" name="datefrom" value="<?php echo $datefrom; ?>">
 					<label>Date To</label>
-					<input type="date" name="dateto">
+					<input type="date" name="dateto" value="<?php echo $dateto; ?>">
 					<input class="btn btn-primary" type="submit" value="Filter">
 				</form>
 				<table class="bookingtable">
